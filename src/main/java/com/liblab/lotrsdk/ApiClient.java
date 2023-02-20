@@ -49,7 +49,7 @@ public class ApiClient implements Closeable {
         return new ApiClient(apiKey);
     }
 
-    private URI buildUri(ApiRequest request) throws URISyntaxException {
+    protected URI buildUri(ApiRequest request) throws URISyntaxException {
         URIBuilder builder = new URIBuilder();
         builder.setScheme("https");
         builder.setHost(baseUri);
@@ -77,7 +77,6 @@ public class ApiClient implements Closeable {
     private <T> T parseAndReturnResponseObject(CloseableHttpResponse response, Type returnType) throws IOException {
         ResponseHandler<String> handler = new ApiResponseHandler();
         String responseBody = handler.handleResponse(response);
-        System.out.println(responseBody);
         JsonReader jsonReader = new JsonReader(new StringReader(responseBody));
         jsonReader.setLenient(true);
         return this.gson.fromJson(jsonReader, returnType);
