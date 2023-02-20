@@ -74,18 +74,7 @@ public class ApiClient implements Closeable {
         URI uri = builder.build();
         return uri;
     }
-
-
-    private  Header[]  getResponseHeaders(CloseableHttpResponse response){
-        Header[] headers = response.getAllHeaders();
-        Map<String, String> responseHeaders = new HashMap<String, String>();
-        for (Header h : headers) {
-            responseHeaders.put(h.getName(), h.getValue());
-        }
-        return headers;
-    }
-
-
+    
     private <T> T parseAndReturnResponseObject(CloseableHttpResponse response, Type returnType) throws IOException {
         ResponseHandler<String> handler = new ApiResponseHandler();
         String responseBody = handler.handleResponse(response);
@@ -116,7 +105,7 @@ public class ApiClient implements Closeable {
             CloseableHttpResponse serverResponse = httpClient.execute(httpGet);
             try {
                 int statusCode = serverResponse.getStatusLine().getStatusCode();
-                Header[] headers = getResponseHeaders(serverResponse);
+                Header[] headers = serverResponse.getAllHeaders();
                 T data = parseAndReturnResponseObject(serverResponse, type);
                 return new ApiResponse(statusCode,headers,data);
             } finally {
