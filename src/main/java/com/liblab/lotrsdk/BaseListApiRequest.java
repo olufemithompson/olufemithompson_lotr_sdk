@@ -6,6 +6,12 @@ import lombok.NonNull;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
+
+/**
+ * This abstract class represents HttpRequest object that includes
+ * parameters for sorting, pagination and filtering.
+ *
+ */
 public abstract class BaseListApiRequest extends ApiRequest {
 
     public BaseListApiRequest() {

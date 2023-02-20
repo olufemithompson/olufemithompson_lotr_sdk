@@ -3,6 +3,10 @@ import java.util.Map;
 import java.util.HashMap;
 
 
+/**
+ * Base class that represents HttpRequest object. holds information about
+ * query parameters, endpoint e.t.c
+ */
 public abstract class ApiRequest {
 
     private String endpoint;
@@ -17,7 +21,7 @@ public abstract class ApiRequest {
 
 
 
-    public void addQueryParam(String key, String value) {
+    protected void addQueryParam(String key, String value) {
         this.queryParams.put(key, value);
     }
 

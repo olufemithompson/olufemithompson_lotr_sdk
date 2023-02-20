@@ -22,12 +22,24 @@ import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Main ApiClient Class that handles submission of http request and handling http responses.
+ *
+ * For this class only GET http request is implemented, considering the scope of the work is limited to that.
+ *
+ */
 public class ApiClient implements Closeable {
+
+
     private CloseableHttpClient httpClient;
 
-    private final String baseUri="the-one-api.dev/v2";
 
+    //base server api host
+    private final String baseApiHostName ="the-one-api.dev/v2";
+
+    // api key
     private final String apiKey;
+
 
     private final Gson gson;
 
@@ -52,7 +64,7 @@ public class ApiClient implements Closeable {
     protected URI buildUri(ApiRequest request) throws URISyntaxException {
         URIBuilder builder = new URIBuilder();
         builder.setScheme("https");
-        builder.setHost(baseUri);
+        builder.setHost(baseApiHostName);
         builder.setPath(request.getEndpoint());
         if (request.getQueryParams() != null) {
             for (Map.Entry<String, String> entry : request.getQueryParams().entrySet()) {
@@ -109,6 +121,7 @@ public class ApiClient implements Closeable {
                 return new ApiResponse(statusCode,headers,data);
             } finally {
                 serverResponse.close();
+                close();
             }
         }
         catch(IOException e) {

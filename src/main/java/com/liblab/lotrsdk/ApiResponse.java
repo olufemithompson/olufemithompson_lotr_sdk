@@ -2,6 +2,12 @@ package com.liblab.lotrsdk;
 
 import org.apache.http.Header;
 
+
+/**
+ * Base class that represents the response from the API server
+ *
+ * @param <T> Actual object model from the response
+ */
 public class ApiResponse<T> {
     private final int statusCode;
     private final Header[] headers;
