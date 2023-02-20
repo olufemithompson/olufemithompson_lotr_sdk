@@ -3,8 +3,8 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.liblab</groupId>
   <artifactId>lotrsdk</artifactId>
-  <version>1.0-SNAPSHOT</version>
-  <name>LotrSdk</name>
+  <version>0.0.1</version>
+  <name>lotrsdk</name>
   <url>http://maven.apache.org</url>
   <description>Lords of the rings sdk :  https://the-one-api.dev/documentation</description>
   <packaging>jar</packaging>
@@ -49,4 +49,11 @@
       </plugin>
     </plugins>
   </build>
+  <distributionManagement>
+    <repository>
+      <id>github</id>
+      <name>GitHub Packages</name>
+      <url>https://maven.pkg.github.com/olufemithompson/olufemithompson_lotr_sdk</url>
+    </repository>
+  </distributionManagement>
 </project>
