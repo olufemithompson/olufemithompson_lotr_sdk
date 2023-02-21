@@ -6,7 +6,6 @@ package com.liblab.lotrsdk.helpers;
  */
 public enum OrderingDirection {
 
-    //sorting direction constants
     SORT_DESC("desc"),
     SORT_ASC("asc");
 
